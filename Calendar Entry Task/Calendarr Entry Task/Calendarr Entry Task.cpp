@@ -7,8 +7,17 @@
 int main()
 {
 	int year;
-	std::cout << "Input year:\n>";
-	std::cin >> year;
-	Calendar cal(year);
-	cal.printCalendar();
+	while (true)
+	{
+		std::cout << "Input year:\n>";
+		std::cin >> year;
+		if (year > 0)
+		{
+			break;
+		}
+		std::cout << "Wrong input!" << std::endl;
+	}
+
+	Calendar calendar(year);
+	calendar.printCalendar();
 }

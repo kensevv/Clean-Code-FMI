@@ -27,16 +27,12 @@ void Calendar::fillMonths()
         else if (i == 1) // February
         {
             int days = 28; // non-leap year
-            if (isLeap(this->Year))
-            {
-                days = 29; // leap year
-            }
+            if (isLeap(this->Year)) days = 29; // leap year
+            
             this->months.push_back(std::make_pair(allMonths[i], days));
         }
-        else
-        {
+        else 
             this->months.push_back(std::make_pair(allMonths[i], 30));
-        }
     }
 }
 
@@ -75,7 +71,7 @@ void Calendar::printIntervals(int numberIntervals)
 
 void Calendar::printMonth(int month, int & weekStartDay)
 {
-    std::cout << "~~~~~~  " << this->months[month].first << "  ~~~~~~" << std::endl;
+    std::cout << "~   ~   ~   ~  " << this->months[month].first << "  ~   ~   ~   ~" << std::endl;
     printWeekDayNames();
     for (size_t i = 0; i < weekStartDay; i++)
     {
@@ -83,7 +79,6 @@ void Calendar::printMonth(int month, int & weekStartDay)
     }
     for (size_t crrDay = 1; crrDay <= numberDaysInMonth(month); crrDay++)
     {
-        
         std::cout << crrDay;
         if (crrDay > 9) printIntervals(4);
         else printIntervals(5);
@@ -122,7 +117,6 @@ Calendar::Calendar(const int Year)
 void Calendar::printCalendar()
 {
     int weekStartDay = this->startDay;
-
     for (size_t currentMonth = 0; currentMonth < 12; currentMonth++)
     {
         printMonth(currentMonth, weekStartDay);

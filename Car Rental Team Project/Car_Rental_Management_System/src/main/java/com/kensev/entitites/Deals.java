@@ -1,81 +1,73 @@
 package com.kensev.entitites;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Deals {
-	@Override
-	public String toString() {
-		return "Deals [startDate=" + startDate + ", clientId=" + clientId + ", emlpoyeeId=" + emlpoyeeId
-				+ ", vehicleLicPlate=" + vehicleLicPlate + ", branchName=" + branchName + ", endDate=" + endDate
-				+ ", payment=" + payment + "]";
-	}
-
-	private Date startDate;
-	private String clientId;
-	private String emlpoyeeId;
-	private String vehicleLicPlate;
-	private String branchName;
-	private Date endDate;
+	private Date start_date;
+	private String client_id;
+	private String employee_id;
+	private String vehicle_licPlate;
+	private String branch_name;
+	private Date end_date;
 	private Double payment;
 
 	public Deals(Date startDate, String clientId, String emlpoyeeId, String vehicleLicPlate, String branchName,
 			Date endDate, Double payment) {
-		this.startDate = startDate;
-		this.clientId = clientId;
-		this.emlpoyeeId = emlpoyeeId;
-		this.vehicleLicPlate = vehicleLicPlate;
-		this.branchName = branchName;
-		this.endDate = endDate;
+		this.start_date = startDate;
+		this.client_id = clientId;
+		this.employee_id = emlpoyeeId;
+		this.vehicle_licPlate = vehicleLicPlate;
+		this.branch_name = branchName;
+		this.end_date = endDate;
 		this.payment = payment;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStart_date() {
+		return start_date;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
 	}
 
-	public String getClientId() {
-		return clientId;
+	public String getClient_id() {
+		return client_id;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClient_id(String client_id) {
+		this.client_id = client_id;
 	}
 
-	public String getEmlpoyeeId() {
-		return emlpoyeeId;
+	public String getEmployee_id() {
+		return employee_id;
 	}
 
-	public void setEmlpoyeeId(String emlpoyeeId) {
-		this.emlpoyeeId = emlpoyeeId;
+	public void setEmployee_id(String emlpoyee_id) {
+		this.employee_id = emlpoyee_id;
 	}
 
-	public String getVehicleLicPlate() {
-		return vehicleLicPlate;
+	public String getVehicle_licPlate() {
+		return vehicle_licPlate;
 	}
 
-	public void setVehicleLicPlate(String vehicleLicPlate) {
-		this.vehicleLicPlate = vehicleLicPlate;
+	public void setVehicle_licPlate(String vehicle_licPlate) {
+		this.vehicle_licPlate = vehicle_licPlate;
 	}
 
-	public String getBranchName() {
-		return branchName;
+	public String getBranch_name() {
+		return branch_name;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getEnd_date() {
+		return end_date;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 
 	public Double getPayment() {
@@ -85,5 +77,11 @@ public class Deals {
 	public void setPayment(Double payment) {
 		this.payment = payment;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Deals [startDate=" + start_date + ", clientId=" + client_id + ", emlpoyeeId=" + employee_id
+				+ ", vehicleLicPlate=" + vehicle_licPlate + ", branchName=" + branch_name + ", endDate=" + end_date
+				+ ", payment=" + payment + "]";
+	}
 }

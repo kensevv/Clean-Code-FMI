@@ -1,10 +1,10 @@
 package com.kensev.servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -91,8 +91,7 @@ public class ClientsControllerServlet extends HttpServlet {
 		String last_name = request.getParameter("last_name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		Date utilBirthdate  = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthdate"));
-		java.sql.Date birthdate = new java.sql.Date(utilBirthdate.getTime());
+		Date birthdate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthdate")).getTime());
 		String driver_lic = request.getParameter("driver_lic");
 
 		Clients newClient = new Clients(ID, first_name, last_name, email, phone, birthdate, driver_lic);
@@ -109,7 +108,7 @@ public class ClientsControllerServlet extends HttpServlet {
 		String last_name = request.getParameter("last_name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		String birthdate  = request.getParameter("birthdate");
+		Date birthdate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthdate")).getTime());
 		String driver_lic = request.getParameter("driver_lic");
 
 		Clients existingClient = clientsCrud.getClientById(ID);
@@ -121,10 +120,8 @@ public class ClientsControllerServlet extends HttpServlet {
 			existingClient.setEmail(email);
 		if (phone != "")
 			existingClient.setPhone(phone);
-		if (birthdate != "") {
-			Date utilBirthdate  = new SimpleDateFormat("yyyy/MM/dd").parse(birthdate);
-			java.sql.Date sqlBirthdate = new java.sql.Date(utilBirthdate.getTime());
-			existingClient.setBirthday(sqlBirthdate);
+		if (birthdate != null) {
+			existingClient.setBirthday(birthdate);
 		}
 		if(driver_lic != "")
 			existingClient.setDriver_lic(driver_lic);

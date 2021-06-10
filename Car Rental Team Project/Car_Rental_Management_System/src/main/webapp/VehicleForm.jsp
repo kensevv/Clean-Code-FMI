@@ -11,7 +11,7 @@
 	<h1 class="header">Welcome to Kensev's Car Rental Management
 		System</h1>
 	<div align="center">
-		<form action="insert" method="get">
+		<form action="vehicles/insert" method="get">
 			<table border="1" cellpadding="5">
 				<tr>
 					<th>license_plate:</th>

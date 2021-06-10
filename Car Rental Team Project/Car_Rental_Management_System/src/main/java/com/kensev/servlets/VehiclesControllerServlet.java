@@ -14,20 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.kensev.cruds.VehicleCRUD;
 import com.kensev.entitites.Vehicle;
 
-@WebServlet("/")
-public class ControllerServlet extends HttpServlet {
+@WebServlet("/vehicles/*")
+public class VehiclesControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private VehicleCRUD vehicleCRUD;
 
-	public ControllerServlet() {
+	public VehiclesControllerServlet() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		vehicleCRUD = new VehicleCRUD();
-		String action = request.getServletPath();
+		String action = request.getPathInfo();
+		String test = request.getServletPath();
 
 		try {
 			switch (action) {
@@ -55,7 +56,6 @@ public class ControllerServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
-
 	}
 
 	private void listVehicle(HttpServletRequest request, HttpServletResponse response)
@@ -63,13 +63,13 @@ public class ControllerServlet extends HttpServlet {
 		String orderBy = request.getParameter("orderBy");
 		List<Vehicle> listVehicle = vehicleCRUD.listAllVehicles(orderBy);
 		request.setAttribute("listVehicle", listVehicle);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("VehicleList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VehicleList.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("VehicleForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VehicleForm.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -77,7 +77,7 @@ public class ControllerServlet extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		List<Vehicle> listVehicle = vehicleCRUD.listAllVehicles();
 		request.setAttribute("listVehicle", listVehicle);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("VehicleModify.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VehicleModify.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -140,7 +140,7 @@ public class ControllerServlet extends HttpServlet {
 
 		List<Vehicle> listVehicle = vehicleCRUD.listAllVehicles();
 		request.setAttribute("listVehicle", listVehicle);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("RemoveVehicle.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/RemoveVehicle.jsp");
 		dispatcher.forward(request, response);
 	}
 

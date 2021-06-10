@@ -20,7 +20,7 @@
 				<option value="model">Model</option>
 				<option value="insurance">Insurance</option>
 				<option value="is_available">Is available</option>
-				<option value="mileage">Milleage</option>
+				<option value="mileage">Mileage</option>
 				<option value="price">Price</option>
 				<option value="branch_name">Branch</option>
 			</select>

@@ -44,6 +44,11 @@
 						placeholder="price"></input></td>
 				</tr>
 				<tr>
+					<th>Branch:</th>
+					<td><input class="input" type="text" name="branch_name"
+						placeholder="branch"></input></td>
+				</tr>
+				<tr>
 				</tr>
 			</table>
 			<button class="button" type="submit" class="button">Add

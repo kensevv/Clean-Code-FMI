@@ -28,7 +28,7 @@ public class VehicleCRUD {
 			while (resultSet.next()) {
 				allVehicles.add(new Vehicle(resultSet.getString("license_plate"), resultSet.getString("model"),
 						resultSet.getString("insurance"), resultSet.getBoolean("is_available"),
-						resultSet.getInt("mileage"), resultSet.getDouble("price")));
+						resultSet.getInt("mileage"), resultSet.getDouble("price"), resultSet.getString("branch_name")));
 			}
 		}
 		return allVehicles;
@@ -42,12 +42,13 @@ public class VehicleCRUD {
 
 			try (ResultSet rs = statement.executeQuery("SELECT * FROM vehicles WHERE 1<>1");) {
 				rs.moveToInsertRow();
-				rs.updateString("license_plate", newVehicle.getLicPlate());
+				rs.updateString("license_plate", newVehicle.getLicense_plate());
 				rs.updateString("model", newVehicle.getModel());
 				rs.updateString("insurance", newVehicle.getInsurance());
-				rs.updateBoolean("is_available", newVehicle.getIsAvailable());
-				rs.updateInt("mileage", newVehicle.getMilleage());
+				rs.updateBoolean("is_available", newVehicle.getIs_available());
+				rs.updateInt("mileage", newVehicle.getMileage());
 				rs.updateDouble("price", newVehicle.getPrice());
+				rs.updateString("branch_name", newVehicle.getBranch_name());
 				rs.insertRow();
 			}
 		}
@@ -64,7 +65,7 @@ public class VehicleCRUD {
 				if (resultSet.next()) {
 					foundVehicle = new Vehicle(licPlate, resultSet.getString("model"), resultSet.getString("mileage"),
 							resultSet.getBoolean("is_available"), resultSet.getInt("mileage"),
-							resultSet.getDouble("price"));
+							resultSet.getDouble("price"), resultSet.getString("branch_name"));
 				}
 
 			}
@@ -92,17 +93,17 @@ public class VehicleCRUD {
 		try (Connection connection = ConnectionPool.getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM vehicles WHERE license_plate = ?",
 						ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);) {
-			statement.setString(1, veh.getLicPlate());
+			statement.setString(1, veh.getLicense_plate());
 			try (ResultSet rs = statement.executeQuery();) {
 				if (rs.next()) {
 					rs.updateString("model", veh.getModel());
 					rs.updateString("insurance", veh.getInsurance());
-					rs.updateBoolean("is_available", veh.getIsAvailable());
-					rs.updateInt("mileage", veh.getMilleage());
+					rs.updateBoolean("is_available", veh.getIs_available());
+					rs.updateInt("mileage", veh.getMileage());
 					rs.updateDouble("price", veh.getPrice());
+					rs.updateString("branch_name", veh.getBranch_name());
 					rs.updateRow();
 				}
-
 			}
 		}
 	}

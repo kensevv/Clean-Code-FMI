@@ -23,13 +23,12 @@
 				</c:forEach>
 			</select>
 			<div class="modify">
-				<input type="text" name="model" placeholder="Model"></input> <input
-					class="input" type="text" name="insurance" placeholder="insurance"></input>
-				<input class="input" type="text" name="is_available"
-					placeholder="is available"></input> <input class="input"
-					type="text" name="mileage" placeholder="Mileage"></input> <input
-					class="input" type="text" name="price" placeholder="price"></input>
-
+				<input type="text" name="model" placeholder="Model"></input> 
+				<input class="input" type="text" name="insurance" placeholder="insurance"></input>
+				<input class="input" type="text" name="is_available" placeholder="is available"></input> 
+				<input class="input" type="text" name="mileage" placeholder="Mileage"></input> 
+				<input class="input" type="text" name="price" placeholder="price"></input>
+				<input class="input" type="text" name="branch_name" placeholder="Branch"></input>
 				<button type="submit" class="button">Modify Vehicle</button>
 			</div>
 		</form>

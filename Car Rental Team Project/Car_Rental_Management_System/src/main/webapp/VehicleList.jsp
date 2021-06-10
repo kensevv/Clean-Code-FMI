@@ -22,6 +22,7 @@
 				<option value="is_available">Is available</option>
 				<option value="mileage">Milleage</option>
 				<option value="price">Price</option>
+				<option value="branch_name">Branch</option>
 			</select>
 			<button type="submit" class="button">Sort</button>
 		</form>
@@ -33,8 +34,9 @@
 				<div class="cell">Model</div>
 				<div class="cell">Insurance</div>
 				<div class="cell">Is Available</div>
-				<div class="cell">Milleage</div>
+				<div class="cell">Mileage</div>
 				<div class="cell">Price</div>
+				<div class="cell">Branch</div>
 			</div>
 			<c:forEach var="vehicle" items="${listVehicle}">
 				<div class="row">
@@ -55,6 +57,9 @@
 					</div>
 					<div class="cell" data-title="Price">
 						<c:out value="${vehicle.price}" />
+					</div>
+					<div class="cell" data-title="Branch">
+						<c:out value="${vehicle.branch_name}" />
 					</div>
 				</div>
 			</c:forEach>

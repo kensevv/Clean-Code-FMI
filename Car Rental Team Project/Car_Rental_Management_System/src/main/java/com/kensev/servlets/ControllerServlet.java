@@ -22,7 +22,6 @@ public class ControllerServlet extends HttpServlet {
 
 	public ControllerServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -91,8 +90,9 @@ public class ControllerServlet extends HttpServlet {
 		boolean isAvailable = Boolean.parseBoolean(request.getParameter("is_available"));
 		int milleage = Integer.parseInt(request.getParameter("mileage"));
 		double price = Double.parseDouble(request.getParameter("price"));
+		String branch_name = request.getParameter("branch_name");
 
-		Vehicle newVehicle = new Vehicle(licPlate, model, insurance, isAvailable, milleage, price);
+		Vehicle newVehicle = new Vehicle(licPlate, model, insurance, isAvailable, milleage, price, branch_name);
 		vehicleCRUD.addVehicle(newVehicle);
 		response.sendRedirect("list");
 
@@ -107,6 +107,7 @@ public class ControllerServlet extends HttpServlet {
 		String isAvailable = request.getParameter("is_available");
 		String milleage = request.getParameter("mileage");
 		String price = request.getParameter("price");
+		String branch_name = request.getParameter("branch_name");
 
 		Vehicle existingVehicle = vehicleCRUD.getVehicle(licPlate);
 		if (model != "")
@@ -114,11 +115,13 @@ public class ControllerServlet extends HttpServlet {
 		if (insurance != "")
 			existingVehicle.setInsurance(insurance);
 		if (isAvailable != "")
-			existingVehicle.setAvailable(Boolean.parseBoolean(isAvailable));
+			existingVehicle.setIs_available(Boolean.parseBoolean(isAvailable));
 		if (milleage != "")
-			existingVehicle.setMilleage(Integer.parseInt(milleage));
+			existingVehicle.setMileage(Integer.parseInt(milleage));
 		if (price != "")
 			existingVehicle.setPrice(Double.parseDouble(price));
+		if(branch_name != "")
+			existingVehicle.setBranch_name(branch_name);
 		
 		vehicleCRUD.updateVehicle(existingVehicle);
 		response.sendRedirect("list");

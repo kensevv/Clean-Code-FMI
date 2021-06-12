@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Vehicle List</title>
+<title>Deals List</title>
 </head>
 <body>
 	<%@include file="htmlTemplates/navigationBar.html"%>
@@ -15,14 +15,14 @@
 	<div class="wrapper">
 		<label for="orderBy" id="modifyTitle">Sort by:</label>
 		<form method="get" action="list">
-			<select name="orderBy" id="car">
-				<option value="license_plate">License Plate</option>
-				<option value="model">Model</option>
-				<option value="insurance">Insurance</option>
-				<option value="is_available">Is available</option>
-				<option value="mileage">Mileage</option>
-				<option value="price">Price</option>
+			<select name="orderBy" id="deal">
+				<option value="start_date">Start Date</option>
+				<option value="end_date">End Date</option>
+				<option value="vehicle_licPlate">Vehicle License Plate</option>
+				<option value="client_id">Client</option>
+				<option value="employee_id">Employee</option>
 				<option value="branch_name">Branch</option>
+				<option value="payment">Payment</option>
 			</select>
 			<button type="submit" class="button">Sort</button>
 		</form>
@@ -30,36 +30,36 @@
 		<div class="table">
 
 			<div class="row header">
-				<div class="cell">License Plate</div>
-				<div class="cell">Model</div>
-				<div class="cell">Insurance</div>
-				<div class="cell">Is Available</div>
-				<div class="cell">Mileage</div>
-				<div class="cell">Price</div>
+				<div class="cell">Start Date</div>
+				<div class="cell">End Date</div>
+				<div class="cell">Vehicle License Plate</div>
+				<div class="cell">Client</div>
+				<div class="cell">Employee</div>
 				<div class="cell">Branch</div>
+				<div class="cell">Payment</div>
 			</div>
-			<c:forEach var="vehicle" items="${listVehicle}">
+			<c:forEach var="deal" items="${listDeal}">
 				<div class="row">
 					<div class="cell" data-title="licPlate">
-						<c:out value="${vehicle.license_plate}" />
+						<c:out value="${deal.start_date}" />
 					</div>
 					<div class="cell" data-title="Model">
-						<c:out value="${vehicle.model}" />
+						<c:out value="${deal.end_date}" />
 					</div>
 					<div class="cell" data-title="Insurance">
-						<c:out value="${vehicle.insurance}" />
+						<c:out value="${deal.vehicle_licPlate}" />
 					</div>
 					<div class="cell" data-title="Is Available">
-						<c:out value="${vehicle.is_available}" />
+						<c:out value="${deal.client_id}" />
 					</div>
 					<div class="cell" data-title="Mileage">
-						<c:out value="${vehicle.mileage}" />
+						<c:out value="${deal.employee_id}" />
 					</div>
 					<div class="cell" data-title="Price">
-						<c:out value="${vehicle.price}" />
+						<c:out value="${deal.branch_name}" />
 					</div>
 					<div class="cell" data-title="Branch">
-						<c:out value="${vehicle.branch_name}" />
+						<c:out value="${deal.payment}" />
 					</div>
 				</div>
 			</c:forEach>

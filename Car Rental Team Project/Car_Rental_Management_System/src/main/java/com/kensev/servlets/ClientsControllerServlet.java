@@ -16,12 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kensev.cruds.ClientsCRUD;
 import com.kensev.entitites.Clients;
+import com.kensev.security.SecurityService;
 
 @WebServlet("/clients/*")
 public class ClientsControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final ClientsCRUD clientsCrud = new ClientsCRUD();
+	private SecurityService securityService = new SecurityService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -54,7 +56,13 @@ public class ClientsControllerServlet extends HttpServlet {
 			throw new ServletException(ex);
 		}
 	}
-
+	
+	private void denyAccess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("errorMessage", "Missing role : ADMIN");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("../AccessDenied.jsp");
+		dispatcher.forward(request, response);		
+	}
+	
 	private void listClient(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException, InterruptedException {
 		String orderBy = request.getParameter("orderBy");
@@ -66,12 +74,22 @@ public class ClientsControllerServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/ClientForm.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException, InterruptedException {
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
+		
 		List<Clients> listClient = clientsCrud.getAllClients();
 		request.setAttribute("listClient", listClient);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/ClientModify.jsp");
@@ -79,7 +97,11 @@ public class ClientsControllerServlet extends HttpServlet {
 	}
 
 	private void insertClient(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ParseException, InterruptedException {
+			throws SQLException, IOException, ParseException, InterruptedException, ServletException {
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
 
 		String ID = request.getParameter("ID");
 		String first_name = request.getParameter("first_name");
@@ -96,8 +118,12 @@ public class ClientsControllerServlet extends HttpServlet {
 	}
 
 	private void updateClient(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ParseException, InterruptedException {
-
+			throws SQLException, IOException, ParseException, InterruptedException, ServletException {
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
+		
 		String ID = request.getParameter("ID");
 		String first_name = request.getParameter("first_name");
 		String last_name = request.getParameter("last_name");
@@ -127,6 +153,11 @@ public class ClientsControllerServlet extends HttpServlet {
 
 	private void deleteClient(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException, InterruptedException {
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
+		
 		String ID = request.getParameter("ID");
 		clientsCrud.removeClient(ID);
 		response.sendRedirect("list");
@@ -135,11 +166,14 @@ public class ClientsControllerServlet extends HttpServlet {
 
 	private void removeForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException, InterruptedException {
-
+		if (!securityService.userIsAdmin(request)) {
+			denyAccess(request, response);
+			return;
+		}
+		
 		List<Clients> listClient = clientsCrud.getAllClients();
 		request.setAttribute("listClient", listClient);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/RemoveClient.jsp");
 		dispatcher.forward(request, response);
 	}
-
 }

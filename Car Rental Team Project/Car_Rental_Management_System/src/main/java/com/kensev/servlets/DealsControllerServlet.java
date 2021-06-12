@@ -16,21 +16,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kensev.cruds.DealsCRUD;
 import com.kensev.entitites.Deals;
+import com.kensev.security.SecurityService;
 
 @WebServlet("/deals/*")
 public class DealsControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final DealsCRUD dealsCRUD = new DealsCRUD();
-
-	public DealsControllerServlet() {
-		super();
-	}
+	private SecurityService securityService = new SecurityService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (!securityService.userIsAdmin(request)) {
+			request.setAttribute("errorMessage", "Missing role : ADMIN");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("../AccessDenied.jsp");
+			dispatcher.forward(request, response);	
+			return;
+		}
+		
 		String action = request.getPathInfo();
-
+		
 		try {
 			switch (action) {
 			case "/new":

@@ -7,15 +7,15 @@ import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/*")
-public class LoginFilter implements Filter {
+public class AuthorizationFilter implements Filter {
 	
 	private static final List<String> excludedUrls = Arrays.asList("/login.jsp", "/register.jsp", "/AccessDenied.jsp", "/LoginServlet", "/RegisterServlet");
 	
@@ -23,12 +23,13 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
 		String path = httpRequest.getServletPath();
 		
-		if (httpRequest.getSession().getAttribute("account") == null && !excludedUrls.contains(path)) {
-			httpResponse.sendRedirect("AccessDenied.jsp");
+		if ( null == httpRequest.getSession().getAttribute("account") && !excludedUrls.contains(path)) {
+			request.setAttribute("errorMessage", "Un-Authorized session. Please Log-in first!");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("AccessDenied.jsp");
+			dispatcher.forward(request, response);
 		} else {
 			chain.doFilter(request, response);
 		}

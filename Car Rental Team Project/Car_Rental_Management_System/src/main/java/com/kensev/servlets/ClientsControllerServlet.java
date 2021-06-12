@@ -21,15 +21,10 @@ import com.kensev.entitites.Clients;
 public class ClientsControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private ClientsCRUD clientsCrud;
-
-	public ClientsControllerServlet() {
-		super();
-	}
+	private static final ClientsCRUD clientsCrud = new ClientsCRUD();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		clientsCrud = new ClientsCRUD();
 		String action = request.getPathInfo();
 
 		try {

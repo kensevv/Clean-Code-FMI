@@ -16,13 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kensev.cruds.DealsCRUD;
 import com.kensev.entitites.Deals;
-import com.kensev.entitites.Vehicle;
 
 @WebServlet("/deals/*")
 public class DealsControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DealsCRUD dealsCRUD;
+	private static final DealsCRUD dealsCRUD = new DealsCRUD();
 
 	public DealsControllerServlet() {
 		super();
@@ -30,7 +29,6 @@ public class DealsControllerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		dealsCRUD = new DealsCRUD();
 		String action = request.getPathInfo();
 
 		try {

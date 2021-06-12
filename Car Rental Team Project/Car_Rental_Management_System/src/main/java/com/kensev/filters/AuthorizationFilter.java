@@ -14,6 +14,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+//OncePerRequestFilter
+
 @WebFilter("/*")
 public class AuthorizationFilter implements Filter {
 	

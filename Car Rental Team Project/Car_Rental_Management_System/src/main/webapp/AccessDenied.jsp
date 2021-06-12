@@ -12,6 +12,8 @@
 <h3 class="w3-center w3-animate-right">You dont have permission to view this site.</h3>
 <h3 id="errorMessage" class="w3-center w3-animate-zoom">${errorMessage}</h3>
 <h6 class="w3-center w3-animate-zoom">error code: 403 forbidden</h6>
+<h3 class="w3-center w3-animate-zoom">  <a id="link" href="/Car_Rental_Management_System/home.jsp">HOME</a>
+										<a id="link" href="/Car_Rental_Management_System/login.jsp">LOGIN</a> </h3>
 </div>
 </body>
 <style><%@include file="css/accessDeniedStyle.css"%></style>

@@ -8,7 +8,6 @@ import com.kensev.entitites.Roles;
 public class SecurityService {
 	public boolean userIsAdmin(HttpServletRequest request) {
 		Account user = (Account) request.getSession().getAttribute("account");
-		return false;
-		//return user.getRole().equals(Roles.ADMIN);
+		return user.getRole().equals(Roles.ADMIN);
 	}
 }

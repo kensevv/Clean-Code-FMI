@@ -5,8 +5,10 @@ body, html, div#root {height: 100%; }
 body {
     font-size: 16px;
     margin: 0;
-    background: rgb(134,41,41);
-background: linear-gradient(90deg, rgba(134,41,41,1) 0%, rgba(185,82,42,1) 28%, rgba(210,194,187,1) 71%, rgba(92,92,92,1) 100%);
+   background: rgba(96, 59, 22, 1.0);
+background: -webkit-linear-gradient(top left, rgba(96, 59, 22, 1.0), rgba(14, 35, 90, 1.0));
+background: -moz-linear-gradient(top left, rgba(96, 59, 22, 1.0), rgba(14, 35, 90, 1.0));
+background: linear-gradient(to bottom right, rgba(96, 59, 22, 1.0), rgba(14, 35, 90, 1.0));
 }
 
 * {
@@ -20,8 +22,6 @@ div#root {
 
 main {
     height: 100%;
-   background: rgb(134,41,41);
-background: linear-gradient(90deg, rgba(134,41,41,1) 0%, rgba(185,82,42,1) 28%, rgba(210,194,187,1) 71%, rgba(92,92,92,1) 100%);
 }
 
 header {
@@ -171,10 +171,20 @@ background: linear-gradient(90deg, rgba(42,11,11,1) 0%, rgba(36,36,36,1) 83%);
 
 .row {
 	display: table-row;
-	background: rgb(65,65,65);
-background: linear-gradient(90deg, rgba(65,65,65,1) 0%, rgba(168,168,168,1) 50%, rgba(82,82,82,1) 100%);
+
+background: #536976;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
+.header .cell {
+	color: white;
+text-decoration: underline;
+}
+.cell{
+	color: 		#A8A8A8;
+}
 
 .cell {
 	display: none;
@@ -194,11 +204,4 @@ background: linear-gradient(90deg, rgba(65,65,65,1) 0%, rgba(168,168,168,1) 50%,
     font-weight: bold;
     font-style: italic;
     background-color: 	rgb(144,144,144);
-}
-
-#userInformation {
-}
-
-#navUser {
-	
 }

@@ -34,7 +34,7 @@ CREATE TABLE `accounts` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `FK_ACC_EMPL` (`employee_id`),
   CONSTRAINT `FK_ACC_EMPL` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'kensev','kensev2000@gmail.com','test','0046054065','ADMIN');
+INSERT INTO `accounts` VALUES (1,'kensev','kensev2000@gmail.com','test','0046054065','ADMIN'),(2,'test','test','test',NULL,'ADMIN');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,6 +130,32 @@ LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` VALUES ('0046054065','Kenan','Yusein','kensev2000@gmail.com','0876617490','2000-06-05','56489920'),('0048729563','Martin','Boni','marto_belqta@gmail.com','0887461792','1999-02-23','56489920'),('0134136775','Iliana','Lichkova','lichkova07@gmail.com','0874983168','2001-09-23','12312520'),('0235346135','Ivan','Tsonev','i.tsonev@gmail.com','0888567134','1998-10-17','56486346'),('0346635401','Hristo','Hristov','icaka@abv.bg','0894571349','2000-08-01','54612020'),('1351343156','Filip','Yordanov','filqka@gmail.com','0899571395','1995-12-13','146689720');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contact_us`
+--
+
+DROP TABLE IF EXISTS `contact_us`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contact_us` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `message` mediumtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contact_us`
+--
+
+LOCK TABLES `contact_us` WRITE;
+/*!40000 ALTER TABLE `contact_us` DISABLE KEYS */;
+INSERT INTO `contact_us` VALUES (1,'Martin Hristov','Marto@abv.bg','What would your best offer be for the Ford Mustang if i took it for a longer period of time for example 2 weeks?');
+/*!40000 ALTER TABLE `contact_us` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -265,7 +291,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
-INSERT INTO `vehicles` VALUES ('BD 8888 OP','Tesla',1,10000,'BULSTRAT-642678',1500,'Blagoevgrad'),('CA 3618 AK','Ford',1,3051,'UNIKA-642517',1000,'Blagoevgrad'),('CB 2516 KT','Ferarri',1,1050,'LEVINS-642647',500,'Smolqn'),('CM 1351 AK','VW',1,200514,'DSK-91415161',100,'Sofia'),('CM 7369 BA','Mercedes',1,10519,'DZI-531516',200,'Sofia'),('E 4561 PA','Toyota',1,125999,'DSK-5316891',60,'Burgas'),('E 8123TX','BMW',1,10559,'EVROINS-513951',90,'Burgas'),('PB 5167 PE','Opel',1,320000,'BULSTRAT-513616',50,'Plovdiv'),('PB 6135 AK','Audi',1,51951,'LEVINS-215166',120,'Plovdiv'),('PZ 0616 YA','PEJO',1,81595,'DSK-613617',30,'Smolqn'),('testADD','TEST',0,0,'0',1,'Sofia');
+INSERT INTO `vehicles` VALUES ('123456789','model1',1,1000,'insurance1',100,'Sofia'),('BD 8888 OP','Tesla',1,10000,'BULSTRAT-642678',1500,'Blagoevgrad'),('CA 3618 AK','Ford',1,3051,'UNIKA-642517',1000,'Blagoevgrad'),('CB 2516 KT','Ferarri',1,1050,'LEVINS-642647',500,'Smolqn'),('CM 1351 AK','VW',1,200514,'DSK-91415161',100,'Sofia'),('CM 7369 BA','Mercedes',1,10519,'DZI-531516',200,'Sofia'),('E 4561 PA','Toyota',1,125999,'DSK-5316891',60,'Burgas'),('E 8123TX','BMW',1,10559,'EVROINS-513951',90,'Burgas'),('PB 5167 PE','Opel',1,320000,'BULSTRAT-513616',50,'Plovdiv'),('PB 6135 AK','Audi',1,51951,'LEVINS-215166',120,'Plovdiv'),('PZ 0616 YA','PEJO',1,81595,'DSK-613617',30,'Smolqn'),('testADD','TEST',0,0,'0',1,'Sofia');
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,4 +312,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-12 17:46:21
+-- Dump completed on 2021-06-13 17:15:42

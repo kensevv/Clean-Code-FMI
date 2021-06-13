@@ -45,7 +45,7 @@ public class ClientsCRUDTest{
 		
 	}
 	@Test
-	public void addVehicleTest() {		
+	public void addClientsTest() {		
 		assertEquals("ID matches",dummyClients.getID(),output_clients.getID());
 		assertEquals("First Name matches",dummyClients.getFirst_name(),output_clients.getFirst_name());
 		assertEquals("Last Name matches",dummyClients.getLast_name(),output_clients.getLast_name());
@@ -62,7 +62,7 @@ public class ClientsCRUDTest{
 	}
 	
 	@Test
-	public void removeVehicleTest() {
+	public void removeClientsTest() {
 		try {
 			dummyClientsCRUD.removeClient(dummyClients.getID());
 			output_clients = dummyClientsCRUD.getClientById(dummyClients.getID());
@@ -74,7 +74,7 @@ public class ClientsCRUDTest{
 	}
 	
 	@Test
-	public void updateVehicleTest() {
+	public void updateClients() {
 		dummyClients.setFirst_name("peepee");
 		dummyClients.setLast_name("poopoo");
 		dummyClients.setEmail("email1@gmail.com");

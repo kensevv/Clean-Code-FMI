@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @WebFilter("/*")
 public class AuthorizationFilter implements Filter {
 	
-	private static final List<String> excludedUrls = Arrays.asList("/login.jsp", "/register.jsp", "/AccessDenied.jsp", "/LoginServlet", "/RegisterServlet");
+	private static final List<String> excludedUrls = Arrays.asList("/home.jsp", "/login.jsp", "/register.jsp", "/AccessDenied.jsp", "/LoginServlet", "/RegisterServlet");
 	
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -30,7 +30,7 @@ public class AuthorizationFilter implements Filter {
 		
 		if ( null == httpRequest.getSession().getAttribute("account") && !excludedUrls.contains(path)) {
 			request.setAttribute("errorMessage", "Un-Authorized session. Please Log-in first!");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("AccessDenied.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("../AccessDenied.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			chain.doFilter(request, response);

@@ -1,4 +1,4 @@
-package com.kensev.servlets;
+package com.kensev.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.Statement;
 import com.kensev.connection.ConnectionPool;
 import com.kensev.entitites.Account;
 import com.kensev.entitites.Roles;
-import com.kensev.security.PasswordService;
+import com.kensev.services.security.PasswordService;
 
 public class AccountService {
 	private final PasswordService passwordService = new PasswordService();

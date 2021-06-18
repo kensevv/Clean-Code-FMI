@@ -1,4 +1,4 @@
-package com.kensev.security;
+package com.kensev.services.security;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package com.kensev.reporting;
+package com.kensev.servlets;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -16,7 +16,8 @@ import com.kensev.cruds.ClientsCRUD;
 import com.kensev.cruds.DealsCRUD;
 import com.kensev.cruds.EmployeesCRUD;
 import com.kensev.cruds.VehicleCRUD;
-import com.kensev.security.SecurityService;
+import com.kensev.reporting.Report;
+import com.kensev.services.security.SecurityService;
 
 @WebServlet("/pdf/*")
 public class ReportPdfControllerServlet extends HttpServlet {
